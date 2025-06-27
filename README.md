@@ -6,8 +6,8 @@ https://www.python.org/downloads/windows/
 
 
 ##### DD Deeplinks for the MS store rollback
-ESRB Everyone ratings will work in most cases [E] - however ESRB Teen [T] and other ratings may be restricted.  
-Most social media type apps will not be [E]  
+ESRB [E] Everyone ratings will work in most cases - however ESRB Teen [T] and other ratings may be restricted.  
+Most social media type apps will be Teen [T]  
 
 [E] [x64dbg] - https://get.microsoft.com/installer/download/9PGJGD53TN86  
 [E] [Python3.11] - https://get.microsoft.com/installer/download/9NRWMJP3717K  
