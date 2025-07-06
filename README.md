@@ -20,10 +20,10 @@ Most social media type apps will be Teen [T]
 #### Details
 - The `1package.tar` and `2package.tar` are the Prowler `.whl` files for Python portable install
 - The `Certify.exe` is what it says
-- The `.Appx` are for the MS Store and 1b765123-a5ce-4bd0-9c0f-9b0b8cc76095 is the store
+- The `.Appx` are for the MS Store and `1b765123-a5ce-4bd0-9c0f-9b0b8cc76095` is the store
 - The `SoAudit.exe` is the auditing tool, Alpha release only so far
 - The `TokenPriv.ps1` is for Admin use to enable different privs in the session as needed
-- The gpg-debs.tar is the set of deb files for installing gpg on minimal Kali, required when apt is not keyed yet
+- The `gpg-debs.tar` is the set of deb files for installing gpg on minimal Kali, required when apt is not keyed yet
 - `odapplockprivs.exe` is for default AppLocker paths checking for any wild files with privs for Everyone user
 - `fulloddapplockerprivs.exe` is a full user group check in AppLocker paths for privs - users are; Everyone, Users, Authenticated Users and Guests
 - Processhacker is the official binary
