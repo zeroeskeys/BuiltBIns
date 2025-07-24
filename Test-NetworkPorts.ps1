@@ -59,6 +59,13 @@ port-scan-tcp (Get-Content .\ips.txt) (Get-Content .\ports.txt)
 # Read non-sequential port list from file and scan one host
 port-scan-tcp 10.10.0.1 (Get-Content .\ports.txt)
 
+# Scan a port range
+port-scan-tcp 192.168.1.100 (20..25)
+
+# Combine ranges and specific ports
+port-scan-tcp 192.168.1.100 @(22, 80, 443) + (1000..1005)
+
+
 Notes:
 - Port list files must be plain text, one port per line.
 - IP list files must be plain text, one IP per line.
