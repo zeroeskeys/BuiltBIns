@@ -5,17 +5,17 @@ function port-scan-tcp {
     )
 
     $outFile = ".\scanresults.txt"
-    foreach ($host in $hosts) {
+    foreach ($targethost in $hosts) {
         foreach ($port in $ports) {
-            $existing = Get-Content $outFile -ErrorAction SilentlyContinue | Select-String "^$host,tcp,$port,"
+            $existing = Get-Content $outFile -ErrorAction SilentlyContinue | Select-String "^$targethost,tcp,$port,"
             if ($existing) {
                 $existing.Line
                 continue
             }
 
-            $result = "$host,tcp,$port,"
+            $result = "$targethost,tcp,$port,"
             $client = New-Object System.Net.Sockets.TcpClient
-            $connect = $client.ConnectAsync($host, $port)
+            $connect = $client.ConnectAsync($targethost, $port)
 
             for ($i = 0; $i -lt 10; $i++) {
                 if ($connect.IsCompleted) { break }
