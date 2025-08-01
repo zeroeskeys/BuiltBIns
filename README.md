@@ -15,7 +15,7 @@ Most social media type apps will be Teen [T]
 [3] [PowerShell 7] - https://get.microsoft.com/installer/download/9MZ1SNWT0N5D  
 [3] [PowerShell Preview] - https://get.microsoft.com/installer/download/9P95ZZKTNRN4  
 [T] [TikTok - PSPF restricted] - https://get.microsoft.com/installer/download/9NH2GPH4JZS4  
-
+[3] [DevToys] - https://get.microsoft.com/installer/download/9PGCV4V3BK4W
 
 #### Details
 - The `1package.tar` and `2package.tar` are the Prowler `.whl` files for Python portable install
@@ -32,6 +32,7 @@ Most social media type apps will be Teen [T]
 - `scriptfile2.js` is a write test, check comments in the file
 - `whl.ps1` is a helper file to unpack `.whl` files to a location - specifically the .tar files `1package.tar` and `2package.tar` but can be for any large `.whl` sets obv. 
 - `JackWrite.dll` is a file write test for missing .dlls
+- `JackWriteExe.exe` is a file write test for missing .exes
 
 ### String POCs
 
