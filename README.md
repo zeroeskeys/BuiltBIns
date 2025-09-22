@@ -16,6 +16,9 @@ Most social media type apps will be Teen [T]
 [3] [PowerShell Preview] - https://get.microsoft.com/installer/download/9P95ZZKTNRN4  
 [T] [TikTok - PSPF restricted] - https://get.microsoft.com/installer/download/9NH2GPH4JZS4  
 [3] [DevToys] - https://get.microsoft.com/installer/download/9PGCV4V3BK4W
+[E] [Windows App] - https://get.microsoft.com/installer/download/9N1F85V9T8BN
+[E] [Splastop Business] - https://get.microsoft.com/installer/download/9NKVM63J25PB
+[E] [RealVNC Viewer] - https://get.microsoft.com/installer/download/XP99DVCPGKTXNJ
 
 #### Details
 - The `1package.tar` and `2package.tar` are the Prowler `.whl` files for Python portable install
