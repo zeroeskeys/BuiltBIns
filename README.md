@@ -33,7 +33,7 @@ Most social media type apps will be Teen [T]
 - The `gpg-debs.tar` is the set of deb files for installing gpg on minimal Kali, required when apt is not keyed yet
 - `odapplockprivs.exe` is for default AppLocker paths checking for any wild files with privs for Everyone user
 - `fulloddapplockerprivs.exe` is a full user group check in AppLocker paths for privs - users are; Everyone, Users, Authenticated Users and Guests
-- `Processhacker` is the official binary
+- `Processhacker` is the binary for 2.39 of ProcessHacker, however System Informer is the modern choice
 - `python` is the official embed 3.11.0 release
 - `regsvr32.c` and the related `.exe` is a source code for poc testing the NoptePad++ CVE from 2025
 - `scriptfile2.js` is a write test, check comments in the file
