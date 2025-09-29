@@ -21,6 +21,9 @@ Most social media type apps will be Teen [T]
 [E] [RealVNC Viewer] - https://get.microsoft.com/installer/download/XP99DVCPGKTXNJ  
 [3] [System Informer] - https://get.microsoft.com/installer/download/XPFMX3KSKZ523M
 
+#### Install via winget
+```winget install --id=WinsiderSS.SystemInformer -e```
+
 #### Details
 - The `1package.tar` and `2package.tar` are the Prowler `.whl` files for Python portable install
 - The `Certify.exe` is what it says
