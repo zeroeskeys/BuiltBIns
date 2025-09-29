@@ -19,6 +19,7 @@ Most social media type apps will be Teen [T]
 [E] [Windows App] - https://get.microsoft.com/installer/download/9N1F85V9T8BN  
 [E] [Splastop Business] - https://get.microsoft.com/installer/download/9NKVM63J25PB  
 [E] [RealVNC Viewer] - https://get.microsoft.com/installer/download/XP99DVCPGKTXNJ  
+[3] [System Informer] - https://get.microsoft.com/installer/download/XPFMX3KSKZ523M
 
 #### Details
 - The `1package.tar` and `2package.tar` are the Prowler `.whl` files for Python portable install
