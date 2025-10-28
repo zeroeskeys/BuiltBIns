@@ -1,0 +1,84 @@
+# 0. Namespace context (so you don't fat-finger prod)
+kubectl config get-contexts
+kubectl config view --minify --output 'jsonpath={..namespace}{"\n"}{..cluster}{" / "}{..user}{"\n"}'
+
+# 1. Pods with node, status, IP, restarts (quick health snapshot)
+kubectl get pods -n <ns> -o wide
+kubectl get pods -n <ns> \
+  -o custom-columns="POD:.metadata.name,READY:.status.containerStatuses[*].ready,RESTARTS:.status.containerStatuses[*].restartCount,STATUS:.status.phase,NODE:.spec.nodeName,IP:.status.podIP"
+
+# 2. Images each pod is running (supply chain sanity)
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"  -->  "}{range .spec.containers[*]}{.image}{" "}{end}{"\n"}{end}'
+
+# 3. Privileged / UID / non-root flags per container (escalation risk)
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{range .spec.containers[*]}{"  "}{.name}{" privileged="}{.securityContext.privileged}{" uid="}{.securityContext.runAsUser}{" nonroot="}{.securityContext.runAsNonRoot}{"\n"}{end}{end}'
+
+# 4. Pod-level namespace escape risk (host shares + hostPath mounts)
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{" hostNetwork="}{.spec.hostNetwork}{" hostPID="}{.spec.hostPID}{" hostIPC="}{.spec.hostIPC}{"\n"}{end}'
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{range .spec.volumes[*]}{.name}{" -> "}{.hostPath.path}{"\n"}{end}{"\n"}{end}'
+
+# 5. Container ports (surface area, low ports imply root bind)
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{range .spec.containers[*]}{"  "}{.name}{" ports="}{range .ports[*]}{.containerPort}{","}{end}{"\n"}{end}{end}'
+
+# 6. Resource requests / limits (no limits = possible noisy neighbor / DoS)
+kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{range .spec.containers[*]}{"  "}{.name}{" req="}{.resources.requests}{" lim="}{.resources.limits}{"\n"}{end}{end}'
+
+# 7. Environment variables in container spec (hardcoded creds check)
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\n"}{range .spec.containers[*]}{"["}{.name}{"] env:\n"}{range .env[*]}{"  "}{.name}{"="}{.value}{"\n"}{end}{end}'
+# (Note: .valueFrom won't print secrets here; you'll just see it's sourced from a secret/configMap)
+
+# 8. Secrets mounted as volumes (data exposure surface)
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\n"}{range .spec.volumes[*]}{.name}{" -> secret:"}{.secret.secretName}{"\n"}{end}'
+# If a pod has lots of mounted secrets, treat it as sensitive
+
+# 9. Check for initContainers (often run with elevated perms to do setup)
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\ninitContainers:\n"}{range .spec.initContainers[*]}{"  "}{.name}{" image="}{.image}{" privileged="}{.securityContext.privileged}{" uid="}{.securityContext.runAsUser}{"\n"}{end}'
+# initContainers running as root with hostPath mounts are a common "sneaky escalator"
+
+# 10. Probe config (readiness/liveness/startup) - stability / DOS risk
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\n"}{range .spec.containers[*]}{"  "}{.name}{"\n    liveness: "}{.livenessProbe.httpGet.path}{" "}{.livenessProbe.httpGet.port}{"\n    readiness: "}{.readinessProbe.httpGet.path}{" "}{.readinessProbe.httpGet.port}{"\n"}{end}'
+# No probes = hard to auto-heal; bad crash loops can take whole service down
+
+# 11. Live container state (what's actually running vs just spec)
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\n"}{range .status.containerStatuses[*]}{"  "}{.name}{" running="}{.ready}{" restarts="}{.restartCount}{" imageID="}{.imageID}{"\n"}{end}'
+# imageID here is the digest actually pulled, useful for supply chain verification
+
+# 12. Events for the pod (why is it crashing / throttling / being killed)
+kubectl describe pod <pod> -n <ns> | sed -n '/Events:/,$p'
+# Fast way to jump to the interesting part
+
+# 13. ServiceAccount RBAC check (what can this pod's identity do)
+SA=$(kubectl get pod <pod> -n <ns> -o jsonpath='{.spec.serviceAccountName}')
+kubectl auth can-i --as=system:serviceaccount:<ns>:$SA --list -n <ns>
+# If this shows things like "create secrets", "list pods in other namespaces", or "exec", note it
+
+# 14. Dump all workload YAML in namespace for offline review / evidence
+kubectl get all -n <ns> -o yaml > namespace_dump.yaml
+# Includes pods, deployments, replicaSets, services, etc. Good snapshot before anyone "fixes" it
+
+# 15. Which deployments control which pods (supply chain / drift check)
+kubectl get deploy -n <ns> -o wide
+kubectl get rs -n <ns> -o wide
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.ownerReferences[*].kind}{" "}{.metadata.ownerReferences[*].name}{"\n"}'
+# If ownerReference is empty, pod might be manually run (kubectl run / debug pod). That's interesting.
+
+# 16. Node info for the pod's node (is this a special/high-trust node?)
+NODE=$(kubectl get pod <pod> -n <ns> -o jsonpath='{.spec.nodeName}')
+kubectl get node $NODE -o wide
+kubectl describe node $NODE | sed -n '1,120p'
+# You're looking for taints, labels like "node-role.kubernetes.io/control-plane", GPU labels, etc.
+# If a random workload is running on a control-plane or privileged node, that's 🔥 material.
+
+# 17. List pod annotations (tokens, sidecars, debug flags sometimes leak here)
+kubectl get pod <pod> -n <ns> -o jsonpath='{.metadata.name}{"\n"}{range $k,$v := .metadata.annotations}{"  "}{$k}{"="}{$v}{"\n"}{end}'
+# People hide things in annotations they don't want in env vars
+
+# 18. Show securityContext in full (for copy into a report)
+kubectl get pod <pod> -n <ns> -o jsonpath='{range .spec.containers[*]}{.name}{" securityContext:\n"}{.securityContext}{"\n\n"}{end}'
+# Faster than scrolling all of -o yaml during note-taking
+
+# 19. If you just want EVERYTHING, but readable
+kubectl describe pod <pod> -n <ns>
+
+# 20. Sanity check what namespace you're currently set to before pasting anything destructive
+kubectl config view --minify --output 'jsonpath={..namespace}{"\n"}'
