@@ -1,4 +1,4 @@
-#### PING ####
+#### TCP-HANDSHAKE ####
 
 perl -MIO::Socket::INET -e '
   $h=shift||die; $ok=IO::Socket::INET->new(PeerAddr=>$h,PeerPort=>80,Proto=>"tcp",Timeout=>2);
