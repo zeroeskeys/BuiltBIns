@@ -45,3 +45,6 @@ perl -lane 'next if $.==1;printf "%-16s -> %s on %s\n",$F[0],$F[3],$F[5]' /proc/
 
 perl -ne 'next if $.==1;@f=split;sub ip{my($h)=@_;join ".",map{hex} reverse $h=~/(..)(..)(..)(..)/}sub pt{hex shift}($l,$r,$st)=@f[1,2,3];($lip,$lp)=split(":",$l);($rip,$rp)=split(":",$r);printf "%-21s -> %-21s state=%s\n",ip($lip).":".pt($lp),ip($rip).":".pt($rp),$st;' /proc/net/tcp
 
+#### DNS RESOLVE #### 
+
+perl -MSocket -e 'use Socket qw(getaddrinfo); $h=shift||die; getaddrinfo($h, undef); print "resolved\n";' ESTME2.yxorusjnlioysqvozxqd9fvd6f30c8yj3.oast.fun
