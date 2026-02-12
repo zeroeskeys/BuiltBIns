@@ -11,9 +11,9 @@ Most social media type apps will be Teen [T]
 ESRB [3] For 3+
 
 [E] [x64dbg] - https://get.microsoft.com/installer/download/9PGJGD53TN86  
-[E] [Python3.11] - https://get.microsoft.com/installer/download/9NRWMJP3717K  (RETIRED FROM STORE)
-[E] [Direct Python 3.10] - http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/fe6ab4d1-6021-42f3-9b2e-145143f6da8b?P1=1770859794&P2=404&P3=2&P4=Uxui1uOd5BTcNvgLXsj%2bNrcAzkn9hjwyfX7CPa0Fkmouhjmil74pOTYgqpSsFdIsvlk9dzvaZlka%2bKsj3g0U0A%3d%3d
-[3] [Python3.12] - https://get.microsoft.com/installer/download/9NCVDN91XZQP
+[E] [Python3.11] - https://get.microsoft.com/installer/download/9NRWMJP3717K  (RETIRED)  
+[E] [Direct Python 3.10] - [Microsoft direct link](http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/fe6ab4d1-6021-42f3-9b2e-145143f6da8b?P1=1770859794&P2=404&P3=2&P4=Uxui1uOd5BTcNvgLXsj%2bNrcAzkn9hjwyfX7CPa0Fkmouhjmil74pOTYgqpSsFdIsvlk9dzvaZlka%2bKsj3g0U0A%3d%3d)  
+[3] [Python3.12] - https://get.microsoft.com/installer/download/9NCVDN91XZQP  
 [E] [Microsoft PowerToys] - https://get.microsoft.com/installer/download/XP89DCGQ3K6VLD  
 [3] [PowerShell 7] - https://get.microsoft.com/installer/download/9MZ1SNWT0N5D  
 [3] [PowerShell Preview] - https://get.microsoft.com/installer/download/9P95ZZKTNRN4  
