@@ -47,7 +47,7 @@ ESRB [3] For 3+
 - `toolbox.pl` and pearls.txt is for containers with only pearl binary/tooling and provides basic OS tooling - post comp script and command reference list
 - kubectl.txt is for kubes/containers manual auditing reference list
 - MSNotepadAppx is a folder of the older appx packages and deps related to the Feb CVE for 2026-20841
-- `PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0.Msix` MS removed 3.10.11 and 3.11 Python from AU region store so this .msix is a copy.
+- `PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0.Msix` MS removed 3.10.11 and 3.11 Python from AU region store so this .msix is a copy. Can be installed with add-appxpackage.
 
 ### String POCs
 
