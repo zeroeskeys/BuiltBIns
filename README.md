@@ -19,11 +19,12 @@ ESRB [3] For 3+
 [3] [PowerShell Preview] - https://get.microsoft.com/installer/download/9P95ZZKTNRN4  
 [T] [TikTok - PSPF restricted] - https://get.microsoft.com/installer/download/9NH2GPH4JZS4  
 [3] [DevToys] - https://get.microsoft.com/installer/download/9PGCV4V3BK4W  
-[E] [Windows App] - https://get.microsoft.com/installer/download/9N1F85V9T8BN  
+[E] [Windows App (windows.cloud AVD)] - https://get.microsoft.com/installer/download/9N1F85V9T8BN  
 [E] [Splashtop Business] - https://get.microsoft.com/installer/download/9NKVM63J25PB  
 [E] [RealVNC Viewer] - https://get.microsoft.com/installer/download/XP99DVCPGKTXNJ  
-[3] [System Informer] - https://get.microsoft.com/installer/download/XPFMX3KSKZ523M  
+[3] [System Informer] - github back linked & blocked in some Ent [XPFMX3KSKZ523M](https://get.microsoft.com/installer/download/XPFMX3KSKZ523M)  
 [3] [Terminal] - https://get.microsoft.com/installer/download/9N0DX20HK701  
+[n.a] [App Installer (winget sideload)] - [aka.ms](https://aka.ms/getwinget) > redirects to [GitHub Download](https://github.com/microsoft/winget-cli/releases/download/v1.12.470/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle)
 
 #### Install System Informer via winget
 ```winget install --id=WinsiderSS.SystemInformer -e```
@@ -48,6 +49,7 @@ ESRB [3] For 3+
 - kubectl.txt is for kubes/containers manual auditing reference list
 - MSNotepadAppx is a folder of the older appx packages and deps related to the Feb CVE for 2026-20841
 - `PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0.Msix` MS removed 3.10.11 and 3.11 Python from AU region store so this .msix is a copy. Can be installed with add-appxpackage.
+- `Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle` The App Installer msix bundle
 
 ### String POCs
 
