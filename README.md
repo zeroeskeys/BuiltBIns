@@ -50,6 +50,7 @@ ESRB [3] For 3+
 - MSNotepadAppx is a folder of the older appx packages and deps related to the Feb CVE for 2026-20841
 - `PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0.Msix` MS removed 3.10.11 and 3.11 Python from AU region store so this .msix is a copy. Can be installed with add-appxpackage.
 - `Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle` The App Installer msix bundle
+- `WerFaultSecure.exe` is used for the PPL/LSASS as detailed in the mttp.md
 
 ### String POCs
 
